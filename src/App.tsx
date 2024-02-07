@@ -1,4 +1,4 @@
-import {DemoPage} from "src/pages/DemoPage.tsx";
+import {DemoPage} from "@pages/DemoPage";
 
 export const App = () => {
   return (

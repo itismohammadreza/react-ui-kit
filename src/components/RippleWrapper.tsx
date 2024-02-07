@@ -206,11 +206,8 @@ export const RippleWrapper = (props: Props) => {
         <TransitionGroup
             component="span"
             enter
-            exit
-        >
-          <>
-            {rippleArray}
-          </>
+            exit>
+          {rippleArray}
         </TransitionGroup>
       </Component>
   )
