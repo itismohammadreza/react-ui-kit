@@ -32,7 +32,7 @@ export interface RippleProps {
   rippleX: number;
   rippleY: number;
   rippleSize: number;
-  timeout: RippleTimeout;
+  timeout?: RippleTimeout;
 }
 
 export interface RippleWrapperProps {
@@ -48,5 +48,5 @@ export interface RippleItem {
   rippleX: number;
   rippleY: number;
   rippleSize: number;
-  timeout: RippleTimeout;
+  timeout?: RippleTimeout;
 }

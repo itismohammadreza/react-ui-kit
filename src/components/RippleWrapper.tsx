@@ -35,37 +35,13 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
   };
   let ignoringMousedown: boolean = false;
 
-  const handleMouseDown = (e) => {
-    start(e);
-  }
-
-  const handleMouseUp = (e) => {
-    stop(e);
-  }
-
-  const handleMouseLeave = (e) => {
-    stop(e);
-  }
-
-  const handleTouchStart = (e) => {
-    start(e);
-  }
-
-  const handleTouchEnd = (e) => {
-    stop(e);
-  }
-
-  const handleTouchMove = (e) => {
-    stop(e);
-  }
-
   useEffect(() => {
     return () => {
       clearTimeout(startTimeout);
     }
   }, []);
 
-  const start = (e) => {
+  const start = (e: MouseEvent & TouchEvent) => {
     if (e.type === 'mousedown' && ignoringMousedown) {
       ignoringMousedown = false;
       return;
@@ -123,7 +99,7 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
       };
       // the timeout can not be too long as it will become laggy
       startTimeout = setTimeout(() => {
-        startWrapper();
+        startWrapper?.();
         startWrapper = null;
       }, 80);
     } else {
@@ -149,11 +125,11 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     setNextKey(prev => prev + 1);
   }
 
-  const stop = (e) => {
+  const stop = (e: MouseEvent & TouchEvent) => {
     clearTimeout(startTimeout);
 
     if (e.type === 'touchend' && startWrapper) {
-      // when touchend was triggerd
+      // when touchend was triggered
       // before `createRipple` was fired
       // so we invoke createRipple immediately
       // and schedule for the stop event
@@ -178,12 +154,12 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
       <Component
           ref={element}
           className={cn('rtr-root', className)}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onTouchMove={handleTouchMove}
+          onMouseDown={start}
+          onTouchStart={start}
+          onMouseUp={stop}
+          onMouseLeave={stop}
+          onTouchEnd={stop}
+          onTouchMove={stop}
           {...other}>
         {children}
         <TransitionGroup
