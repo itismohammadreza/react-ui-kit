@@ -1,8 +1,8 @@
-import {useEffect, useRef, useState} from 'react';
+import {ReactNode, useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
 import {TransitionGroup} from 'react-transition-group';
 import {Ripple} from '@components/Ripple';
-import {RippleWrapperProps} from "@types/data.model";
+import {RippleItem, RippleWrapperProps} from "@types/data.model";
 import './index.css';
 
 export const RippleWrapper = (props: RippleWrapperProps) => {
@@ -19,16 +19,16 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
 
   const {
     className,
-    center,
     component: Component,
     children,
     color,
+    center,
     timeout,
     ...other
   } = defaultProps;
 
   const element = useRef<HTMLElement>();
-  const [rippleArray, setRippleArray] = useState([]);
+  const [rippleArray, setRippleArray] = useState<ReactNode[]>([]);
   const [nextKey, setNextKey] = useState(0);
   let startTimeout: number;
   let startWrapper: (() => void) | null = () => {
@@ -74,8 +74,6 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
       ignoringMousedown = true;
     }
 
-    const {center, timeout} = defaultProps;
-
     const rect = element.current
         ? element.current.getBoundingClientRect()
         : {
@@ -87,7 +85,9 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
           height: 0,
         };
 
-    let rippleX, rippleY, rippleSize;
+    let rippleX: number;
+    let rippleY: number;
+    let rippleSize: number;
     // calculate coordinates of the ripple
     if (
         center ||
@@ -131,18 +131,13 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     }
   }
 
-  const createRipple = (params: {
-    rippleX: number,
-    rippleY: number,
-    rippleSize: number,
-    timeout: { enter: number, exit: number }
-  }) => {
+  const createRipple = (params: RippleItem) => {
     const {rippleX, rippleY, rippleSize, timeout} = params;
-    const newRippleArray = [
+    const newRippleArray: ReactNode[] = [
       ...rippleArray,
       <Ripple
           timeout={timeout}
-          color={defaultProps.color}
+          color={color}
           key={nextKey}
           rippleX={rippleX}
           rippleY={rippleY}
@@ -189,8 +184,7 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchMove={handleTouchMove}
-          {...other}
-      >
+          {...other}>
         {children}
         <TransitionGroup
             component="span"

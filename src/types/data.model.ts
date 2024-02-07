@@ -26,20 +26,27 @@ export interface ButtonProps {
   onClick?: () => void;
 }
 
-export type RippleProps = {
+export interface RippleProps {
   className?: string;
+  color?: string;
   rippleX: number;
   rippleY: number;
   rippleSize: number;
   timeout: RippleTimeout;
-  color: string;
 }
 
-export type RippleWrapperProps = {
+export interface RippleWrapperProps {
   className?: string;
   color?: string;
   center?: boolean;
   component?: string;
   children: ReactNode;
   timeout?: RippleTimeout
+}
+
+export interface RippleItem {
+  rippleX: number;
+  rippleY: number;
+  rippleSize: number;
+  timeout: RippleTimeout;
 }
