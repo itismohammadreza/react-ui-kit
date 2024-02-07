@@ -1,5 +1,3 @@
-import {useEffect} from "react";
-
 type HandlerFn = (_?: any) => any;
 
 export const EventBus = () => {

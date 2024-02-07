@@ -1,23 +1,12 @@
-import {ReactNode, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
 import {TransitionGroup} from 'react-transition-group';
-import {Ripple} from './Ripple';
+import {Ripple} from '@components/Ripple';
+import {RippleWrapperProps} from "@types/data.model";
 import './index.css';
 
-type Props = {
-  className?: string,
-  color?: string,
-  center?: boolean,
-  component?: string,
-  children: ReactNode,
-  timeout?: {
-    enter: number,
-    exit: number,
-  },
-};
-
-export const RippleWrapper = (props: Props) => {
-  const defaultProps = {
+export const RippleWrapper = (props: RippleWrapperProps) => {
+  const defaultProps: RippleWrapperProps = {
     component: 'div',
     center: false,
     color: 'currentColor',

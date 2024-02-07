@@ -1,8 +1,8 @@
+import {useState} from "react";
 import {Button} from "@components/Button";
 import {ThemeProvider} from "@theme/Theme";
-import {useState} from "react";
-import {CssBaseline} from "@theme/CssBaseline.tsx";
-import {RippleWrapper} from "@components/RippleWrapper.tsx";
+import {CssBaseline} from "@theme/CssBaseline";
+import {RippleWrapper} from "@components/RippleWrapper";
 
 export const DemoPage = () => {
   const [defaultTheme, setDefaultTheme] = useState({

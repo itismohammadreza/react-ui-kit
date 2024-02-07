@@ -1,7 +1,8 @@
-import {GlobalStyles} from "@theme/GlobalStyles.tsx";
+import {GlobalStyles} from "@theme/GlobalStyles";
+import {CSSObject} from "@emotion/styled";
 
 export const CssBaseline = () => {
-  const styles = {
+  const styles: CSSObject = {
     ':root': {
       fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
       lineHeight: 1.5,
@@ -36,6 +37,6 @@ export const CssBaseline = () => {
       },
     },
   };
-  
+
   return <GlobalStyles styles={styles}/>
 }
