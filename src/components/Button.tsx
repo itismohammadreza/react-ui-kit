@@ -2,6 +2,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import {createStyled} from "@theme/styled";
 import {RippleWrapper} from "@components/RippleWrapper.tsx";
 import {ButtonProps} from "@types/data.model";
+import {ButtonBase} from "@components/ButtonBase.ts";
 
 const ButtonRoot = createStyled('button', {
   shouldForwardProp: (props: keyof ButtonProps) => isPropValid(props)
@@ -57,19 +58,17 @@ const ButtonRoot = createStyled('button', {
 
 export const Button = (props: ButtonProps) => {
   const defaultProps: ButtonProps = {
-    color: 'primary',
-    disabled: false,
-    fullWidth: false,
-    size: 'medium',
-    variant: 'filled',
+    ...ButtonBase.defaultProps,
     ...props
   };
-  const {startIcon, children, endIcon, color, disabled, fullWidth, size, variant} = defaultProps;
-  const classNames = `ui-button ui-button-${color} ui-button-${disabled} ui-button-${fullWidth} ui-button-${size} ui-button-${variant}`;
+  const {children, icon, label} = defaultProps;
+  const {classes} = ButtonBase.css!;
+
   return (
       <RippleWrapper>
-        <ButtonRoot {...defaultProps} className={classNames}>
-          {startIcon}{children}{endIcon}
+        <ButtonRoot {...defaultProps} className={classes.root()}>
+          <span className={classes.icon()}>{icon}</span>
+          {label ? <span className={classes.label()}>{label}</span> : children}
         </ButtonRoot>
       </RippleWrapper>
   )

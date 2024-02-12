@@ -4,6 +4,7 @@ import {Theme} from "@emotion/react";
 type ButtonColor = 'primary' | 'secondary';
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonType = 'button' | 'submit';
+type ButtonIconPosition = 'left' | 'right' | 'top' | 'bottom';
 type ButtonVariant = 'text' | 'filled' | 'outlined' | 'elevated';
 
 interface RippleTimeout {
@@ -14,10 +15,14 @@ interface RippleTimeout {
 export interface ButtonProps {
   children?: ReactNode;
   className?: string;
+  label?: string;
   color?: ButtonColor;
   disabled?: boolean;
-  endIcon?: ReactNode;
-  startIcon?: ReactNode;
+  async?: boolean;
+  loading?: boolean;
+  icon?: ReactNode;
+  loadingIcon?: ReactNode;
+  iconPos?: ButtonIconPosition;
   fullWidth?: boolean;
   size?: ButtonSize;
   type?: ButtonType;
@@ -49,4 +54,13 @@ export interface RippleItem {
   rippleY: number;
   rippleSize: number;
   timeout?: RippleTimeout;
+}
+
+export interface ComponentBase<T> {
+  defaultProps: T;
+  css?: {
+    classes: {
+      [key: string]: () => string;
+    }
+  };
 }
