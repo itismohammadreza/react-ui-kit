@@ -1,12 +1,13 @@
-import isPropValid from '@emotion/is-prop-valid';
-import {createStyled} from "@theme/styled";
-import {RippleWrapper} from "@components/RippleWrapper.tsx";
-import {ButtonProps} from "@types/data.model";
-import {ButtonBase} from "@components/ButtonBase.ts";
+import {isPropValid} from "@styles-engine/api";
+import {createStyled} from "@styles-engine/styled";
+import {Ripple} from "@components/Ripple";
+import {ButtonBase, ButtonProps} from "@components/Button";
+import {memo} from "react";
+import {CanBeThemed} from "@models/data.model";
 
 const ButtonRoot = createStyled('button', {
-  shouldForwardProp: (props: keyof ButtonProps) => isPropValid(props)
-})((props: ButtonProps) => ({
+  shouldForwardProp: (prop) => isPropValid(prop)
+})((props: CanBeThemed<ButtonProps>) => ({
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -28,7 +29,7 @@ const ButtonRoot = createStyled('button', {
       borderRadius: '4px',
       transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(props.variant === 'text' && {
-        color: props.theme.colors.primaryBlue,
+        color: props?.theme?.colors?.primaryBlue,
         '&:hover': {
           textDecoration: 'none',
           backgroundColor: 'rgba(25, 118, 210, 0.04)',
@@ -36,7 +37,7 @@ const ButtonRoot = createStyled('button', {
       }),
       ...(props.variant === 'filled' && {
         color: 'rgb(255, 255, 255)',
-        backgroundColor: props.theme.colors.primaryBlue,
+        backgroundColor: props?.theme?.colors?.primaryBlue,
         boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px',
         '&:hover': {
           textDecoration: 'none',
@@ -46,7 +47,7 @@ const ButtonRoot = createStyled('button', {
       }),
       ...(props.variant === 'outlined' && {
         border: '1px solid rgba(25, 118, 210, 0.5)',
-        color: props.theme.colors.primaryBlue,
+        color: props?.theme?.colors?.primaryBlue,
         '&:hover': {
           textDecoration: 'none',
           backgroundColor: 'rgba(25, 118, 210, .04)',
@@ -56,20 +57,16 @@ const ButtonRoot = createStyled('button', {
     })
 )
 
-export const Button = (props: ButtonProps) => {
-  const defaultProps: ButtonProps = {
-    ...ButtonBase.defaultProps,
-    ...props
-  };
-  const {children, icon, label} = defaultProps;
-  const {classes} = ButtonBase.css!;
+export const Button = memo((props: ButtonProps) => {
+  const {css, defaultProps} = ButtonBase(props);
+  const {children, icon, label, disableRipple} = defaultProps;
 
   return (
-      <RippleWrapper>
-        <ButtonRoot {...defaultProps} className={classes.root()}>
-          <span className={classes.icon()}>{icon}</span>
-          {label ? <span className={classes.label()}>{label}</span> : children}
+      <Ripple disabled={disableRipple}>
+        <ButtonRoot {...defaultProps} className={css.root}>
+          <span className={css.icon}>{icon}</span>
+          {label ? <span className={css.label}>{label}</span> : children}
         </ButtonRoot>
-      </RippleWrapper>
+      </Ripple>
   )
-}
+})
