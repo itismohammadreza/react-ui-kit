@@ -1,5 +1,5 @@
-import {GlobalStyles} from "@theme/GlobalStyles";
-import {CSSObject} from "@emotion/styled";
+import {GlobalStyles} from "@styles-engine/GlobalStyles";
+import {CSSObject} from "@styles-engine/api";
 
 export const CssBaseline = () => {
   const styles: CSSObject = {
@@ -9,8 +9,8 @@ export const CssBaseline = () => {
       fontWeight: 400,
       fontSynthesis: 'none',
       textRendering: 'optimizeLegibility',
-      '-webkit-font-smoothing': 'antialiased',
-      '-moz-osx-font-smoothing': 'grayscale',
+      webkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
     },
     html: {
       WebkitFontSmoothing: 'antialiased',
