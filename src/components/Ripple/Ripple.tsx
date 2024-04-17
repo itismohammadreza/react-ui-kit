@@ -1,39 +1,32 @@
-import {ReactNode, useEffect, useRef, useState} from 'react';
-import cn from 'classnames';
-import {TransitionGroup} from 'react-transition-group';
-import {Ripple} from '@components/Ripple';
-import {RippleItem, RippleWrapperProps} from "@types/data.model";
-import './index.css';
+import {memo, MouseEvent, ReactNode, useEffect, useRef, useState} from 'react';
+import {TransitionGroup} from "@styles-engine/api";
+import {RippleInner, RippleItem, RippleProps} from "@components/Ripple";
+import {RippleBase} from "@components/Ripple/RippleBase";
+import {createStyled} from "@styles-engine/styled";
+import {Nullable} from "@models/data.model";
 
-export const RippleWrapper = (props: RippleWrapperProps) => {
-  const defaultProps: RippleWrapperProps = {
-    component: 'div',
-    center: false,
-    color: 'currentColor',
-    timeout: {
-      enter: 500,
-      exit: 500,
-    },
-    ...props
-  }
+const RippleRoot = createStyled('div')({
+  position: 'relative',
+  display: 'inline-block',
+  overflow: 'hidden'
+});
 
+export const Ripple = memo((props: RippleProps) => {
+  const {css, defaultProps} = RippleBase(props);
   const {
-    className,
-    component: Component,
     children,
     color,
     center,
     timeout,
-    ...other
+    disabled,
   } = defaultProps;
-
-  const element = useRef<HTMLElement>();
+  const element = useRef<HTMLDivElement>(null);
   const [rippleArray, setRippleArray] = useState<ReactNode[]>([]);
   const [nextKey, setNextKey] = useState(0);
-  let startTimeout: number;
-  let startWrapper: (() => void) | null = () => {
-  };
   let ignoringMousedown: boolean = false;
+  let startTimeout: number;
+  let startWrapper: Nullable<VoidFunction> = () => {
+  };
 
   useEffect(() => {
     return () => {
@@ -41,7 +34,30 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     }
   }, []);
 
+  const createRipple = (params: RippleItem) => {
+    const {rippleX, rippleY, rippleSize, timeout} = params;
+    const newRippleArray: ReactNode[] = [
+      ...rippleArray,
+      <RippleInner
+          timeout={timeout}
+          color={color!}
+          key={nextKey}
+          rippleX={rippleX}
+          rippleY={rippleY}
+          rippleSize={rippleSize}
+      />
+    ];
+
+    setRippleArray(newRippleArray);
+    setNextKey(prev => prev + 1);
+  }
+
   const start = (e: MouseEvent & TouchEvent) => {
+    if (disabled) {
+      stop(e);
+      return;
+    }
+
     if (e.type === 'mousedown' && ignoringMousedown) {
       ignoringMousedown = false;
       return;
@@ -64,13 +80,11 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     let rippleX: number;
     let rippleY: number;
     let rippleSize: number;
-    // calculate coordinates of the ripple
     if (
         center ||
         (e.clientX === 0 && e.clientY === 0) ||
         (!e.clientX && !e.touches)
     ) {
-      // place the ripple in the center of the rect
       rippleX = Math.round(rect.width / 2);
       rippleY = Math.round(rect.height / 2);
     } else {
@@ -80,7 +94,6 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
       rippleY = Math.round(clientY - rect.top);
     }
 
-    // calculate the size of the ripple
     if (center) {
       rippleSize = Math.sqrt((2 * Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 3);
     } else {
@@ -89,15 +102,10 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
       rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
     }
 
-    // Execute
     if (e.touches) {
-      // delay the ripple effect for touch devices
-      // because touchend event always triggers fast enough
-      // without the user even noticed the ripple effect
       startWrapper = () => {
         createRipple({rippleX, rippleY, rippleSize, timeout});
       };
-      // the timeout can not be too long as it will become laggy
       startTimeout = setTimeout(() => {
         startWrapper?.();
         startWrapper = null;
@@ -107,32 +115,10 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     }
   }
 
-  const createRipple = (params: RippleItem) => {
-    const {rippleX, rippleY, rippleSize, timeout} = params;
-    const newRippleArray: ReactNode[] = [
-      ...rippleArray,
-      <Ripple
-          timeout={timeout}
-          color={color}
-          key={nextKey}
-          rippleX={rippleX}
-          rippleY={rippleY}
-          rippleSize={rippleSize}
-      />
-    ];
-
-    setRippleArray(newRippleArray);
-    setNextKey(prev => prev + 1);
-  }
-
   const stop = (e: MouseEvent & TouchEvent) => {
     clearTimeout(startTimeout);
 
     if (e.type === 'touchend' && startWrapper) {
-      // when touchend was triggered
-      // before `createRipple` was fired
-      // so we invoke createRipple immediately
-      // and schedule for the stop event
       e.persist();
       startWrapper();
       startWrapper = null;
@@ -145,29 +131,31 @@ export const RippleWrapper = (props: RippleWrapperProps) => {
     startWrapper = null;
 
     if (rippleArray && rippleArray.length) {
-      // remove the first ripple
       setRippleArray(rippleArray.slice(1))
     }
   }
 
   return (
-      <Component
-          ref={element}
-          className={cn('rtr-root', className)}
-          onMouseDown={start}
-          onTouchStart={start}
-          onMouseUp={stop}
-          onMouseLeave={stop}
-          onTouchEnd={stop}
-          onTouchMove={stop}
-          {...other}>
-        {children}
-        <TransitionGroup
-            component="span"
-            enter
-            exit>
-          {rippleArray}
-        </TransitionGroup>
-      </Component>
+      disabled
+          ?
+          <>{children}</>
+          :
+          <RippleRoot
+              ref={element}
+              className={css.root}
+              onMouseDown={start}
+              onTouchStart={start}
+              onMouseUp={stop}
+              onMouseLeave={stop}
+              onTouchEnd={stop}
+              onTouchMove={stop}>
+            {children}
+            <TransitionGroup
+                component="span"
+                enter
+                exit>
+              {rippleArray}
+            </TransitionGroup>
+          </RippleRoot>
   )
-}
+})
