@@ -10,8 +10,11 @@
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@services/*": ["./src/services/*"],
-      "@theme/*": ["./src/theme/*"],
+      "@styles-engine/*": ["./src/styles-engine/*"],
+      "@forms-engine/*": ["./src/forms-engine/*"],
+      "@models/*": ["./src/models/*"],
       "@types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

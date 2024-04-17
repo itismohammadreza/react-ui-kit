@@ -1,11 +1,14 @@
 import {useState} from "react";
 import {Button} from "@components/Button";
-import {ThemeProvider} from "@theme/Theme";
-import {CssBaseline} from "@theme/CssBaseline";
-import {RippleWrapper} from "@components/RippleWrapper";
+import {ThemeProvider} from "@styles-engine/Theme";
+import {CssBaseline} from "@styles-engine/CssBaseline";
+import {Ripple} from "@components/Ripple";
+import {Input} from "@components/Input";
+import {FormHandler} from "@forms-engine/FormHandler";
+import {DefaultTheme} from "@models/data.model";
 
 export const DemoPage = () => {
-  const [defaultTheme, setDefaultTheme] = useState({
+  const [defaultTheme, setDefaultTheme] = useState<DefaultTheme>({
     colors: {
       primaryBlue: 'rgb(25, 118, 210)'
     }
@@ -20,17 +23,35 @@ export const DemoPage = () => {
     setDefaultTheme(prev => ({...prev, ...newTheme}))
   };
 
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
   return (
       <>
-        <CssBaseline/>
-        <RippleWrapper>
+        <Ripple>
           <div style={{width: '200px', height: '200px', background: 'cyan', display: 'grid', placeItems: 'center'}}>
             Ripple Box
           </div>
-        </RippleWrapper>
+        </Ripple>
         <ThemeProvider theme={defaultTheme}>
-          <h2>Demo Page</h2>
-          <Button onClick={() => changeTheme()}>Text</Button>
+          <>
+            <CssBaseline/>
+            <h2>Demo Page</h2>
+            <Button onClick={() => changeTheme()}>Text</Button>
+            <FormHandler formId="sample-form" mode="onChange" onSubmit={onSubmit}>
+              <>
+                <h3>In Form</h3>
+                <Input
+                    label="label"
+                    name="firstName"
+                    validation={{required: 'is required', minLength: {value: 3, message: 'min length'}}}/>
+                <Button type="submit">Submit</Button>
+              </>
+            </FormHandler>
+            <h3>Out Form</h3>
+            <Input label="label" defaultValue={"asdasddd"}/>
+          </>
         </ThemeProvider>
       </>
   )

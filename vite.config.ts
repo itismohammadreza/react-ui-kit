@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
-import react from '@vitejs/plugin-react';
-import {resolve} from 'path';
+import {defineConfig} from "vite";
+import react from "@vitejs/plugin-react";
+import {resolve} from "path";
 
 export default defineConfig({
   plugins: [react()],
@@ -10,8 +10,10 @@ export default defineConfig({
       "@components": resolve(__dirname, "./src/components/"),
       "@pages": resolve(__dirname, "./src/pages/"),
       "@services": resolve(__dirname, "./src/services/"),
-      "@theme": resolve(__dirname, "./src/theme/"),
-      "@types": resolve(__dirname, "./src/types/"),
+      "@styles-engine": resolve(__dirname, "./src/styles-engine/"),
+      "@forms-engine": resolve(__dirname, "./src/forms-engine/"),
+      "@models": resolve(__dirname, "./src/models/"),
+      "@utils": resolve(__dirname, "./src/utils/"),
     }
   }
 })
