@@ -1,4 +1,4 @@
-import {IntrinsicElements, styled, StyledOptions, StyledTag} from "@styles-engine/api";
+import { IntrinsicElements, styled, StyledOptions, StyledTag } from "@styles-engine/api";
 
 export const createStyled = <Tag extends StyledTag>(
     tag: Tag,

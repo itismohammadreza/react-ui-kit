@@ -41,6 +41,7 @@ import {
   ReadFormState as RHF_ReadFormState,
   Ref as RHF_Ref,
   RefCallBack as RHF_RefCallBack,
+  RegisterOptions as RHF_RegisterOptions,
   SetFieldValue as RHF_SetFieldValue,
   SetFocusOptions as RHF_SetFocusOptions,
   SetValueConfig as RHF_SetValueConfig,
@@ -83,7 +84,6 @@ import {
   useWatch as RHF_useWatch,
   UseWatchProps as RHF_UseWatchProps,
   ValidationModeFlags as RHF_ValidationModeFlags,
-  RegisterOptions as RHF_RegisterOptions,
 } from "react-hook-form";
 
 export const FormProvider = RHF_FormProvider;

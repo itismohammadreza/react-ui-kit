@@ -1,4 +1,4 @@
-import {Global, GlobalStylesProps} from "@styles-engine/api";
+import { Global, GlobalStylesProps } from "@styles-engine/api";
 
 export const GlobalStyles = (props: GlobalStylesProps) => {
   const {styles} = props;

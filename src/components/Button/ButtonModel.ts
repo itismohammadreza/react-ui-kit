@@ -1,4 +1,4 @@
-import {HTMLAttributes, ReactNode} from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 type ButtonColor = 'primary' | 'secondary';
 type ButtonSize = 'small' | 'medium' | 'large';

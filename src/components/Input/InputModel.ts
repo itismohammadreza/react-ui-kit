@@ -1,5 +1,5 @@
-import {HTMLAttributes, MouseEvent} from "react";
-import {RegisterOptions} from "@forms-engine/api";
+import { HTMLAttributes } from "react";
+import { RegisterOptions } from "@forms-engine/api";
 
 export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   label?: string;

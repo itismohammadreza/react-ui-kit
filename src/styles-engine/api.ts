@@ -1,17 +1,15 @@
-import {JSX} from "react";
+import { JSX } from "react";
 import cn from 'classnames';
 import {
+  Global as EmotionGlobal,
+  GlobalProps as EmotionGlobalProps,
   Theme as EmotionTheme,
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps
 } from "@emotion/react";
 import EmotionIsPropValid from "@emotion/is-prop-valid";
-import {TransitionGroup as ReactTransitionGroup, Transition as ReactTransition} from "react-transition-group";
-import {Global as EmotionGlobal,} from "@emotion/react";
-import {CSSObject as EmotionCSSObject} from "@emotion/styled";
-import emotionStyled from "@emotion/styled";
-import {StyledOptions as EmotionStyledOptions} from "@emotion/styled";
-import {GlobalProps as EmotionGlobalProps} from "@emotion/react";
+import { Transition as ReactTransition, TransitionGroup as ReactTransitionGroup } from "react-transition-group";
+import emotionStyled, { CSSObject as EmotionCSSObject, StyledOptions as EmotionStyledOptions } from "@emotion/styled";
 
 export type Theme = EmotionTheme;
 export type CSSObject = EmotionCSSObject;

@@ -1,9 +1,9 @@
-import {useState} from "react";
-import {Transition} from "@styles-engine/api";
-import {RippleInnerProps} from "@components/Ripple";
-import {RippleInnerBase} from "@components/Ripple/RippleBase";
-import {createStyled} from "@styles-engine/styled";
-import {keyframes} from "@emotion/react";
+import { useState } from "react";
+import { Transition } from "@styles-engine/api";
+import { RippleInnerProps } from "@components/Ripple";
+import { RippleInnerBase } from "@components/Ripple/RippleBase";
+import { createStyled } from "@styles-engine/styled";
+import { keyframes } from "@emotion/react";
 
 const rippleEnter = keyframes({
   '0%': {

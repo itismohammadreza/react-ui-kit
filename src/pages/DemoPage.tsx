@@ -1,11 +1,11 @@
-import {useState} from "react";
-import {Button} from "@components/Button";
-import {ThemeProvider} from "@styles-engine/Theme";
-import {CssBaseline} from "@styles-engine/CssBaseline";
-import {Ripple} from "@components/Ripple";
-import {Input} from "@components/Input";
-import {FormHandler} from "@forms-engine/FormHandler";
-import {DefaultTheme} from "@models/data.model";
+import { useState } from "react";
+import { Button } from "@components/Button";
+import { ThemeProvider } from "@styles-engine/Theme";
+import { CssBaseline } from "@styles-engine/CssBaseline";
+import { Ripple } from "@components/Ripple";
+import { Input } from "@components/Input";
+import { FormHandler } from "@forms-engine/FormHandler";
+import { DefaultTheme } from "@models/data.model";
 
 export const DemoPage = () => {
   const [defaultTheme, setDefaultTheme] = useState<DefaultTheme>({

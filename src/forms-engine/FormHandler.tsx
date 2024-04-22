@@ -1,5 +1,5 @@
-import {FormProvider, useForm} from "@forms-engine/api";
-import {FormHandlerProps} from "@models/data.model";
+import { FormProvider, useForm } from "@forms-engine/api";
+import { FormHandlerProps } from "@models/data.model";
 
 export const FormHandler = <T = any>(props: FormHandlerProps<T>) => {
   const {onSubmit, children, formId, ...otherProps} = props;

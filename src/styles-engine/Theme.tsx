@@ -1,5 +1,5 @@
-import {createContext, useContext} from "react";
-import {ThemeProvider as EmotionThemeProvider, ThemeProviderProps} from "@styles-engine/api";
+import { createContext, useContext } from "react";
+import { ThemeProvider as EmotionThemeProvider, ThemeProviderProps } from "@styles-engine/api";
 
 export const ThemeContext = createContext({});
 

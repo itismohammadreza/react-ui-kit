@@ -1,5 +1,5 @@
-import {GlobalStyles} from "@styles-engine/GlobalStyles";
-import {CSSObject} from "@styles-engine/api";
+import { GlobalStyles } from "@styles-engine/GlobalStyles";
+import { CSSObject } from "@styles-engine/api";
 
 export const CssBaseline = () => {
   const styles: CSSObject = {

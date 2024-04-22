@@ -1,6 +1,6 @@
-import {ComponentBase} from "@models/data.model";
-import {InputProps} from "@components/Input/InputModel";
-import {classNames} from "@styles-engine/api";
+import { ComponentBase } from "@models/data.model";
+import { InputProps } from "@components/Input/InputModel";
+import { classNames } from "@styles-engine/api";
 
 export const InputBase: ComponentBase<InputProps> = (ownerState: InputProps) => {
   const defaultProps: InputProps = {

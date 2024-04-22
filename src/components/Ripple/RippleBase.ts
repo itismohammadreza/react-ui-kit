@@ -1,6 +1,6 @@
-import {ComponentBase} from "@models/data.model";
-import {RippleInnerProps, RippleProps} from "@components/Ripple/RippleModel";
-import {classNames} from "@styles-engine/api";
+import { ComponentBase } from "@models/data.model";
+import { RippleInnerProps, RippleProps } from "@components/Ripple/RippleModel";
+import { classNames } from "@styles-engine/api";
 
 export const RippleInnerBase: ComponentBase<RippleInnerProps> = (ownerState: any) => {
   const {exiting, entering, ...others} = ownerState;

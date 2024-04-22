@@ -1,9 +1,9 @@
-import {memo, MouseEvent, ReactNode, useEffect, useRef, useState} from 'react';
-import {TransitionGroup} from "@styles-engine/api";
-import {RippleInner, RippleItem, RippleProps} from "@components/Ripple";
-import {RippleBase} from "@components/Ripple/RippleBase";
-import {createStyled} from "@styles-engine/styled";
-import {Nullable} from "@models/data.model";
+import { memo, MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import { TransitionGroup } from "@styles-engine/api";
+import { RippleInner, RippleItem, RippleProps } from "@components/Ripple";
+import { RippleBase } from "@components/Ripple/RippleBase";
+import { createStyled } from "@styles-engine/styled";
+import { Nullable } from "@models/data.model";
 
 const RippleRoot = createStyled('div')({
   position: 'relative',
