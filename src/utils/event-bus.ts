@@ -1,4 +1,6 @@
-type HandlerFn = (_?: any) => any;
+import { SafeAny } from "@models/data.model.ts";
+
+type HandlerFn = (_?: SafeAny) => SafeAny;
 
 export const EventBus = () => {
   const allHandlers = new Map<string, HandlerFn[]>();
@@ -17,7 +19,7 @@ export const EventBus = () => {
       const handlers = allHandlers.get(type);
       handlers && handlers.splice(handlers.indexOf(handler) >>> 0, 1);
     },
-    emit: (type: string, event: any) => {
+    emit: (type: string, event: SafeAny) => {
       const handlers = allHandlers.get(type);
       handlers && handlers.slice().forEach((handler) => handler(event));
     },

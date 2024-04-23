@@ -5,7 +5,7 @@ import { CssBaseline } from "@styles-engine/CssBaseline";
 import { Ripple } from "@components/Ripple";
 import { Input } from "@components/Input";
 import { FormHandler } from "@forms-engine/FormHandler";
-import { DefaultTheme } from "@models/data.model";
+import { DefaultTheme, SafeAny } from "@models/data.model";
 
 export const DemoPage = () => {
   const [defaultTheme, setDefaultTheme] = useState<DefaultTheme>({
@@ -23,7 +23,7 @@ export const DemoPage = () => {
     setDefaultTheme(prev => ({...prev, ...newTheme}))
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: SafeAny) => {
     console.log(data);
   }
 

@@ -4,6 +4,7 @@ import { RippleInnerProps } from "@components/Ripple";
 import { RippleInnerBase } from "@components/Ripple/RippleBase";
 import { createStyled } from "@styles-engine/styled";
 import { keyframes } from "@emotion/react";
+import { SafeAny } from "@models/data.model.ts";
 
 const rippleEnter = keyframes({
   '0%': {
@@ -31,7 +32,7 @@ const RippleInnerRoot = createStyled('span')(({
                                                 rippleX,
                                                 rippleY,
                                                 color
-                                              }: any) => ({
+                                              }: SafeAny) => ({
   display: 'block',
   opacity: 1,
   pointerEvents: 'none',

@@ -9,14 +9,16 @@ export type ComponentBase<PropType, StateType> = (...ownerState: StateType[]) =>
 
 export type Nullable<T = void> = T | null | undefined;
 
+export type SafeAny = any;
+
 export interface FormHandlerProps<T> extends UseFormProps {
-  children: ReactElement | ((args: any) => ReactElement);
-  onSubmit?: (data: T) => any;
+  children: ReactElement | ((args: SafeAny) => ReactElement);
+  onSubmit: (data: T) => SafeAny;
   formId?: string;
 }
 
 export interface DefaultTheme extends Theme {
-  colors: any;
+  colors: SafeAny;
 }
 
 export type CanBeThemed<T> = { [key in keyof T]: T[key] } & { theme?: DefaultTheme };
