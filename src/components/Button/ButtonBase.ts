@@ -1,8 +1,8 @@
 import { ComponentBase } from "@models/data.model";
 import { classNames } from "@styles-engine/api";
-import { ButtonProps } from "@components/Button/ButtonModel";
+import { ButtonProps, ButtonState } from "@components/Button/ButtonModel";
 
-export const ButtonBase: ComponentBase<ButtonProps> = (props: ButtonProps) => {
+export const ButtonBase: ComponentBase<ButtonProps, ButtonState> = (ownerState) => {
   const defaultProps: ButtonProps = {
     disabled: false,
     iconPos: 'left',
@@ -15,6 +15,7 @@ export const ButtonBase: ComponentBase<ButtonProps> = (props: ButtonProps) => {
     variant: 'text',
     ...props,
   };
+
   return {
     defaultProps,
     css: {

@@ -1,8 +1,8 @@
 import { ComponentBase } from "@models/data.model";
-import { RippleInnerProps, RippleProps } from "@components/Ripple/RippleModel";
+import { RippleInnerProps, RippleInnerState, RippleProps, RippleState } from "@components/Ripple/RippleModel";
 import { classNames } from "@styles-engine/api";
 
-export const RippleInnerBase: ComponentBase<RippleInnerProps> = (ownerState: any) => {
+export const RippleInnerBase: ComponentBase<RippleInnerProps, RippleInnerState> = (ownerState) => {
   const {exiting, entering, ...others} = ownerState;
   const defaultProps: RippleInnerProps = {
     // the default props are whatever component receive from parent.
@@ -24,8 +24,7 @@ export const RippleInnerBase: ComponentBase<RippleInnerProps> = (ownerState: any
   }
 }
 
-export const RippleBase: ComponentBase<RippleProps> = (ownerState: any) => {
-  const {wrapperExiting, rippleEntering, ...others} = ownerState;
+export const RippleBase: ComponentBase<RippleProps, RippleState> = (ownerState) => {
   const defaultProps: RippleProps = {
     center: false,
     color: 'currentColor',
@@ -33,7 +32,7 @@ export const RippleBase: ComponentBase<RippleProps> = (ownerState: any) => {
       enter: 500,
       exit: 500,
     },
-    ...others
+    ...ownerState
   }
 
   return {

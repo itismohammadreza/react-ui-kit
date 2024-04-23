@@ -21,3 +21,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   variant?: ButtonVariant;
 }
+
+export interface ButtonState extends ButtonProps {
+}

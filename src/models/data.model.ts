@@ -2,8 +2,8 @@ import { ReactElement } from "react";
 import { UseFormProps } from "@forms-engine/api";
 import { Theme } from "@styles-engine/api";
 
-export type ComponentBase<T> = (...ownerState: any[]) => {
-  defaultProps: T;
+export type ComponentBase<PropType, StateType> = (...ownerState: StateType[]) => {
+  defaultProps: PropType;
   css: Record<string, string>;
 }
 
