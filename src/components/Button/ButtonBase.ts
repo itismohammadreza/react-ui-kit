@@ -13,7 +13,7 @@ export const ButtonBase: ComponentBase<ButtonProps, ButtonState> = (ownerState) 
     fullWidth: false,
     type: 'button',
     variant: 'text',
-    ...props,
+    ...ownerState,
   };
 
   return {

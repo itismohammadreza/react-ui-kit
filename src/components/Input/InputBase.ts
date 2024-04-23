@@ -8,7 +8,6 @@ export const InputBase: ComponentBase<InputProps, InputState> = (ownerState) => 
     inputId: '',
     disabled: false,
     placeholder: '',
-    showClearButton: false,
     name: '',
     validation: {},
     showError: true,
@@ -18,7 +17,8 @@ export const InputBase: ComponentBase<InputProps, InputState> = (ownerState) => 
   return {
     defaultProps,
     css: {
-      root: classNames("ui-input-root", {clearable: defaultProps.showClearButton}),
+      root: classNames("ui-input-root", {'ui-invalid': ownerState.errors}),
+      input: "ui-input",
       label: 'ui-input-label',
       clearButton: 'ui-input-clear-button',
       error: 'ui-input-error-message',

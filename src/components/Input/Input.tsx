@@ -1,6 +1,6 @@
-import { memo, useRef } from "react";
+import { memo, useRef, useState } from "react";
 import { InputProps } from "@components/Input/InputModel";
-import { Controller, useFormContext } from "@forms-engine/api";
+import { Controller, FieldError, useFormContext } from "@forms-engine/api";
 import { InputBase } from "@components/Input/InputBase";
 import { createStyled } from "@styles-engine/styled";
 import { isPropValid } from "@styles-engine/api";
@@ -12,7 +12,9 @@ const InputRoot = createStyled('label', {
 })((props: CanBeThemed<InputProps>) => ({}));
 
 export const Input = memo((props: InputProps) => {
-  const {css, defaultProps} = InputBase(props);
+  const [errors, setErrors] = useState<FieldError>();
+  const methods = useFormContext();
+  const {css, defaultProps} = InputBase({...props, errors});
   const {
     label,
     name,
@@ -22,15 +24,14 @@ export const Input = memo((props: InputProps) => {
     inputId,
     ...other
   } = defaultProps;
-
   const inputIdRef = useRef(inputId || uniqueComponentId());
-  const methods = useFormContext();
 
   const PureInput = (
       <InputRoot className={css.root} htmlFor={inputIdRef.current}>
         {label && <span className={css.label}>{label}</span>}
         <input
             type="text"
+            className={css.input}
             id={inputIdRef.current}
             defaultValue={defaultValue}
             {...methods?.register(name!, validation)}
@@ -39,20 +40,22 @@ export const Input = memo((props: InputProps) => {
       </InputRoot>
   );
 
-  return methods ? (
+  return methods && name ? (
       <Controller
-          name={name!}
+          name={name}
           control={methods.control}
           defaultValue={defaultValue}
           rules={validation}
-          render={({fieldState: {error}}) => (
-              <>
-                {PureInput}
-                {showError && (
-                    <span className={css.error}>{error?.message}</span>
-                )}
-              </>
-          )}
+          render={({fieldState: {error}}) => {
+            setErrors(error);
+            return <>
+              {PureInput}
+              {showError && (
+                  <span className={css.error}>{error?.message}</span>
+              )}
+            </>
+          }
+          }
       />
   ) : (
       <>{PureInput}</>
