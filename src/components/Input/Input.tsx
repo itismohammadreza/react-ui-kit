@@ -25,7 +25,6 @@ export const Input = memo((props: InputProps) => {
     ...other
   } = defaultProps;
   const inputIdRef = useRef(inputId || uniqueComponentId());
-
   const PureInput = (
       <InputRoot className={css.root} htmlFor={inputIdRef.current}>
         {label && <span className={css.label}>{label}</span>}
@@ -48,14 +47,15 @@ export const Input = memo((props: InputProps) => {
           rules={validation}
           render={({fieldState: {error}}) => {
             setErrors(error);
-            return <>
-              {PureInput}
-              {showError && (
-                  <span className={css.error}>{error?.message}</span>
-              )}
-            </>
-          }
-          }
+            return (
+                <>
+                  {PureInput}
+                  {showError && (
+                      <span className={css.error}>{error?.message}</span>
+                  )}
+                </>
+            )
+          }}
       />
   ) : (
       <>{PureInput}</>
