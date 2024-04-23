@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { FieldError, RegisterOptions } from "@forms-engine/api";
+import { ControllerFieldState, RegisterOptions } from "@forms-engine/api";
 
 export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -12,5 +12,5 @@ export interface InputProps extends HTMLAttributes<HTMLInputElement> {
 }
 
 export interface InputState extends InputProps {
-  errors?: FieldError;
+  fieldState?: ControllerFieldState;
 }

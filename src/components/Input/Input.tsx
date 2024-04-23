@@ -1,6 +1,6 @@
-import { memo, useRef, useState } from "react";
+import { memo, useRef } from "react";
 import { InputProps } from "@components/Input/InputModel";
-import { Controller, FieldError, useFormContext } from "@forms-engine/api";
+import { Controller, useFormContext, useWatch } from "@forms-engine/api";
 import { InputBase } from "@components/Input/InputBase";
 import { createStyled } from "@styles-engine/styled";
 import { isPropValid } from "@styles-engine/api";
@@ -12,9 +12,8 @@ const InputRoot = createStyled('label', {
 })((props: CanBeThemed<InputProps>) => ({}));
 
 export const Input = memo((props: InputProps) => {
-  const [errors, setErrors] = useState<FieldError>();
   const methods = useFormContext();
-  const {css, defaultProps} = InputBase({...props, errors});
+  const {css, defaultProps} = InputBase({...props, fieldState: methods?.getFieldState(props.name!)});
   const {
     label,
     name,
@@ -39,6 +38,8 @@ export const Input = memo((props: InputProps) => {
       </InputRoot>
   );
 
+  useWatch({name: name!});
+
   return methods && name ? (
       <Controller
           name={name}
@@ -46,7 +47,6 @@ export const Input = memo((props: InputProps) => {
           defaultValue={defaultValue}
           rules={validation}
           render={({fieldState: {error}}) => {
-            setErrors(error);
             return (
                 <>
                   {PureInput}

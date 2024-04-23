@@ -17,7 +17,12 @@ export const InputBase: ComponentBase<InputProps, InputState> = (ownerState) => 
   return {
     defaultProps,
     css: {
-      root: classNames("ui-input-root", {'ui-invalid': ownerState.errors}),
+      root: classNames("ui-input-root", {
+        'ui-invalid': ownerState.fieldState?.invalid,
+        'ui-touched': ownerState.fieldState?.isTouched,
+        'ui-dirty': ownerState.fieldState?.isDirty,
+        'ui-validating': ownerState.fieldState?.isValidating,
+      }),
       input: "ui-input",
       label: 'ui-input-label',
       clearButton: 'ui-input-clear-button',
