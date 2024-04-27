@@ -7,14 +7,6 @@ interface RadioItem {
   value: string;
 }
 
-export interface FormControl {
-  name?: string;
-  validation?: RegisterOptions;
-  showError?: boolean;
-  defaultValue?: SafeAny;
-  className?: string;
-}
-
 export interface RadioGroupProps extends HTMLAttributes<HTMLInputElement> {
   label?: string;
   options?: RadioItem[];
@@ -24,7 +16,6 @@ export interface RadioGroupProps extends HTMLAttributes<HTMLInputElement> {
   showError?: boolean;
   defaultValue?: SafeAny;
 }
-
 
 export interface RadioGroupState extends RadioGroupProps {
   fieldState?: ControllerFieldState;

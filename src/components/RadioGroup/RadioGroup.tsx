@@ -6,7 +6,7 @@ import { isPropValid } from "@styles-engine/api";
 import { uniqueComponentId } from "@utils/uniqeComponentId";
 import { CanBeStyled, CanBeThemed } from "@models/data.model";
 import { Radio } from "@components/Radio";
-import { withController } from "@forms-engine/withController.tsx";
+import { withController } from "@forms-engine/withController";
 
 const RadioGroupRoot = createStyled('div', {
   shouldForwardProp: (prop) => isPropValid(prop)

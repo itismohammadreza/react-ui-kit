@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { UseFormProps } from "@forms-engine/api";
+import { RegisterOptions, UseFormProps } from "@forms-engine/api";
 import { Theme } from "@styles-engine/api";
 
 export type ComponentBase<PropType, StateType> = (...ownerState: StateType[]) => {
@@ -21,5 +21,13 @@ export interface DefaultTheme extends Theme {
   colors: SafeAny;
 }
 
-export type CanBeThemed<T> = { [key in keyof T]: T[key] } & { theme?: DefaultTheme };
+export type CanBeThemed<T> = { [key in keyof T]?: T[key] } & { theme?: DefaultTheme };
+export type CanBeStyled<T> = { [key in keyof T]?: T[key] } & { css?: any };
 
+export interface FormControl {
+  name?: string;
+  validation?: RegisterOptions;
+  showError?: boolean;
+  defaultValue?: SafeAny;
+  className?: string;
+}

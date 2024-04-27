@@ -1,4 +1,4 @@
-import { SafeAny } from "@models/data.model.ts";
+import { SafeAny } from "@models/data.model";
 
 type HandlerFn = (_?: SafeAny) => SafeAny;
 

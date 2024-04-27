@@ -5,7 +5,7 @@ import { createStyled } from "@styles-engine/styled";
 import { isPropValid } from "@styles-engine/api";
 import { uniqueComponentId } from "@utils/uniqeComponentId";
 import { CanBeStyled, CanBeThemed } from "@models/data.model";
-import { withController } from "@forms-engine/withController.tsx";
+import { withController } from "@forms-engine/withController";
 
 const TextareaRoot = createStyled('label', {
   shouldForwardProp: (prop) => isPropValid(prop)

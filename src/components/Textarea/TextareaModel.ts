@@ -2,14 +2,6 @@ import { HTMLAttributes } from "react";
 import { ControllerFieldState, RegisterOptions } from "@forms-engine/api";
 import { SafeAny } from "@models/data.model";
 
-export interface FormControl {
-  name?: string;
-  validation?: RegisterOptions;
-  showError?: boolean;
-  defaultValue?: SafeAny;
-  className?: string;
-}
-
 export interface TextareaProps extends HTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   inputId?: string;
@@ -20,7 +12,6 @@ export interface TextareaProps extends HTMLAttributes<HTMLTextAreaElement> {
   showError?: boolean;
   defaultValue?: SafeAny;
 }
-
 
 export interface TextareaState extends TextareaProps {
   fieldState?: ControllerFieldState;
