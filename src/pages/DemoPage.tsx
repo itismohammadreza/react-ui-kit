@@ -6,6 +6,7 @@ import { Ripple } from "@components/Ripple";
 import { Input } from "@components/Input";
 import { FormHandler } from "@forms-engine/FormHandler";
 import { DefaultTheme, SafeAny } from "@models/data.model";
+import { Textarea } from "@components/Textarea";
 import { Radio } from "@components/Radio";
 import { RadioGroup } from "@components/RadioGroup";
 
@@ -59,6 +60,7 @@ export const DemoPage = () => {
             </FormHandler>
             <h3>Out Form</h3>
             <Input label="label" defaultValue={"asdasddd"}/>
+            <Textarea label="label" defaultValue={"Default Value"}/>
             <Radio name={"x1"}/>
             <Radio name={"x1"}/>
             <Radio name={"x1"}/>
