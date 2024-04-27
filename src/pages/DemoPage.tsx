@@ -59,7 +59,7 @@ export const DemoPage = () => {
               </>
             </FormHandler>
             <h3>Out Form</h3>
-            <Input label="label" defaultValue={"asdasddd"}/>
+            <Input label="label" defaultValue={"Default Value"}/>
             <Textarea label="label" defaultValue={"Default Value"}/>
             <Radio name={"x1"}/>
             <Radio name={"x1"}/>

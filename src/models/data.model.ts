@@ -21,5 +21,6 @@ export interface DefaultTheme extends Theme {
   colors: SafeAny;
 }
 
-export type CanBeThemed<T> = { [key in keyof T]: T[key] } & { theme?: DefaultTheme };
+export type CanBeThemed<T> = { [key in keyof T]?: T[key] } & { theme?: DefaultTheme };
+export type CanBeStyled<T> = { [key in keyof T]?: T[key] } & { css?: any };
 
