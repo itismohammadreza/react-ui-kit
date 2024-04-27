@@ -6,6 +6,8 @@ import { Ripple } from "@components/Ripple";
 import { Input } from "@components/Input";
 import { FormHandler } from "@forms-engine/FormHandler";
 import { DefaultTheme, SafeAny } from "@models/data.model";
+import { Radio } from "@components/Radio";
+import { RadioGroup } from "@components/RadioGroup";
 
 export const DemoPage = () => {
   const [defaultTheme, setDefaultTheme] = useState<DefaultTheme>({
@@ -46,11 +48,20 @@ export const DemoPage = () => {
                     label="label"
                     name="firstName"
                     validation={{required: 'is required', minLength: {value: 3, message: 'min length'}}}/>
+
+                <RadioGroup
+                    options={[{label: 'o1', value: 'o1'}, {label: 'o2', value: 'o2'}]}
+                    name={"lastName"}
+                    defaultValue={"o2"}
+                    validation={{required: 'is required'}}/>
                 <Button type="submit">Submit</Button>
               </>
             </FormHandler>
             <h3>Out Form</h3>
             <Input label="label" defaultValue={"asdasddd"}/>
+            <Radio name={"x1"}/>
+            <Radio name={"x1"}/>
+            <Radio name={"x1"}/>
           </>
         </ThemeProvider>
       </>
