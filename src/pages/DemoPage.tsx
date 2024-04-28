@@ -9,6 +9,7 @@ import { DefaultTheme, SafeAny } from "@models/data.model";
 import { Textarea } from "@components/Textarea";
 import { Radio } from "@components/Radio";
 import { RadioGroup } from "@components/RadioGroup";
+import { Checkbox } from "@components/Checkbox";
 
 export const DemoPage = () => {
   const [defaultTheme, setDefaultTheme] = useState<DefaultTheme>({
@@ -55,6 +56,8 @@ export const DemoPage = () => {
                     name={"lastName"}
                     defaultValue={"o2"}
                     validation={{required: 'is required'}}/>
+
+                <Checkbox name={"isAdmin"} validation={{required: 'is required'}}/>
                 <Button type="submit">Submit</Button>
               </>
             </FormHandler>
@@ -64,6 +67,7 @@ export const DemoPage = () => {
             <Radio name={"x1"}/>
             <Radio name={"x1"}/>
             <Radio name={"x1"}/>
+            <Checkbox/>
           </>
         </ThemeProvider>
       </>
