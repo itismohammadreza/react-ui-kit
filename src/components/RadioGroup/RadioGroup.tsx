@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, memo, useMemo } from "react";
+import { ForwardedRef, forwardRef, Fragment, memo, useMemo } from "react";
 import { RadioGroupProps } from "@components/RadioGroup/RadioGroupModel";
 import { RadioGroupBase } from "@components/RadioGroup/RadioGroupBase";
 import { createStyled } from "@styles-engine/styled";
@@ -13,28 +13,25 @@ const RadioGroupRoot = createStyled('div', {
 })((props: CanBeThemed<RadioGroupProps>) => ({}));
 
 const PureRadioGroup = forwardRef((props: CanBeStyled<RadioGroupProps>, ref: ForwardedRef<any>) => {
-  const {css, label, options, ...other} = props;
+  const {css, label, options, defaultValue, ...other} = props;
   const optionsWithId = useMemo(() => options?.map(option => ({...option, __id__: uniqueComponentId()})) || [], []);
 
   return (
       <RadioGroupRoot className={css.root}>
         {label && <span className={css.label}>{label}</span>}
         {
-          optionsWithId.map(option => {
-            return (
-                <>
-                  <label htmlFor={option.__id__}>{option.label}</label>
-                  <Radio
-                      key={option.value}
-                      ref={ref}
-                      className={css.input}
-                      inputId={option.__id__}
-                      value={option.value}
-                      {...other}
-                  />
-                </>
-            )
-          })
+          optionsWithId.map(option => (
+              <Fragment key={option.value}>
+                <label htmlFor={option.__id__}>{option.label}</label>
+                <Radio
+                    ref={ref}
+                    className={css.input}
+                    inputId={option.__id__}
+                    value={option.value}
+                    {...other}
+                />
+              </Fragment>
+          ))
         }
       </RadioGroupRoot>
   )

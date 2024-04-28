@@ -1,13 +1,11 @@
 import { HTMLAttributes } from "react";
-import { ControllerFieldState, RegisterOptions } from "@forms-engine/api";
-import { SafeAny } from "@models/data.model";
+import { ControllerFieldState } from "@forms-engine/api";
 
 export interface RadioProps extends HTMLAttributes<HTMLInputElement> {
   inputId?: string;
   disabled?: boolean;
   name?: string;
   value: string;
-  defaultValue?: SafeAny;
 }
 
 
