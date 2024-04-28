@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from "react";
 
 type ButtonColor = 'primary' | 'secondary';
 type ButtonSize = 'small' | 'medium' | 'large';
-type ButtonType = 'button' | 'submit';
+type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonIconPosition = 'left' | 'right' | 'top' | 'bottom';
 type ButtonVariant = 'text' | 'filled' | 'outlined' | 'elevated';
 
