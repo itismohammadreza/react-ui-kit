@@ -1,6 +1,6 @@
 import { ComponentBase } from "@models/data.model";
 import { InputProps, InputState } from "@components/Input/InputModel";
-import { classNames } from "@styles-engine/api";
+import { $classNames } from "@styles-engine/api";
 
 export const InputBase: ComponentBase<InputProps, InputState> = (ownerState) => {
   const defaultProps: InputProps = {
@@ -17,7 +17,7 @@ export const InputBase: ComponentBase<InputProps, InputState> = (ownerState) => 
   return {
     defaultProps,
     css: {
-      root: classNames("ui-input-root", {
+      root: $classNames("ui-input-root", {
         'ui-invalid': ownerState.fieldState?.invalid,
         'ui-touched': ownerState.fieldState?.isTouched,
         'ui-dirty': ownerState.fieldState?.isDirty,

@@ -1,5 +1,5 @@
 import { ComponentBase } from "@models/data.model";
-import { classNames } from "@styles-engine/api";
+import { $classNames } from "@styles-engine/api";
 import { ButtonProps, ButtonState } from "@components/Button/ButtonModel";
 
 export const ButtonBase: ComponentBase<ButtonProps, ButtonState> = (ownerState) => {
@@ -19,14 +19,14 @@ export const ButtonBase: ComponentBase<ButtonProps, ButtonState> = (ownerState) 
   return {
     defaultProps,
     css: {
-      icon: classNames('ui-button-icon', {
+      icon: $classNames('ui-button-icon', {
         [`ui-button-icon-${defaultProps.iconPos}`]: defaultProps.label
       }),
-      loadingIcon: classNames({
+      loadingIcon: $classNames({
         'ui-button-loading-icon': defaultProps.isLoading
       }),
       label: 'ui-button-label',
-      root: classNames(
+      root: $classNames(
           'ui-button',
           `ui-button-${defaultProps.variant}`,
           `ui-button-${defaultProps.size}`,

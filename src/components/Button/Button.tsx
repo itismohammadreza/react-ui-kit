@@ -1,4 +1,4 @@
-import { isPropValid } from "@styles-engine/api";
+import { $isPropValid } from "@styles-engine/api";
 import { createStyled } from "@styles-engine/styled";
 import { Ripple } from "@components/Ripple";
 import { ButtonBase, ButtonProps } from "@components/Button";
@@ -6,7 +6,7 @@ import { memo } from "react";
 import { CanBeThemed } from "@models/data.model";
 
 const ButtonRoot = createStyled('button', {
-  shouldForwardProp: (prop) => isPropValid(prop)
+  shouldForwardProp: (prop) => $isPropValid(prop)
 })((props: CanBeThemed<ButtonProps>) => ({
       display: 'inline-flex',
       alignItems: 'center',

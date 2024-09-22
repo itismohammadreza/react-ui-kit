@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { RegisterOptions, UseFormProps } from "@forms-engine/api";
-import { Theme } from "@styles-engine/api";
+import { $Theme } from "@styles-engine/api";
 
 export type ComponentBase<PropType, StateType> = (...ownerState: StateType[]) => {
   defaultProps: PropType;
@@ -17,7 +17,7 @@ export interface FormHandlerProps<T> extends UseFormProps {
   formId?: string;
 }
 
-export interface DefaultTheme extends Theme {
+export interface DefaultTheme extends $Theme {
   colors: SafeAny;
 }
 

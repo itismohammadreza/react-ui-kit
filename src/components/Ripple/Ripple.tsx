@@ -1,5 +1,5 @@
 import { memo, MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import { TransitionGroup } from "@styles-engine/api";
+import { $TransitionGroup } from "@styles-engine/api";
 import { RippleInner, RippleItem, RippleProps } from "@components/Ripple";
 import { RippleBase } from "@components/Ripple/RippleBase";
 import { createStyled } from "@styles-engine/styled";
@@ -150,12 +150,12 @@ export const Ripple = memo((props: RippleProps) => {
               onTouchEnd={stop}
               onTouchMove={stop}>
             {children}
-            <TransitionGroup
+            <$TransitionGroup
                 component="span"
                 enter
                 exit>
               {rippleArray}
-            </TransitionGroup>
+            </$TransitionGroup>
           </RippleRoot>
   )
 })

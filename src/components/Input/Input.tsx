@@ -2,13 +2,13 @@ import { ForwardedRef, forwardRef, memo, useRef } from "react";
 import { InputProps } from "@components/Input/InputModel";
 import { InputBase } from "@components/Input/InputBase";
 import { createStyled } from "@styles-engine/styled";
-import { isPropValid } from "@styles-engine/api";
+import { $isPropValid } from "@styles-engine/api";
 import { uniqueComponentId } from "@utils/uniqeComponentId";
 import { CanBeStyled, CanBeThemed } from "@models/data.model";
 import { withController } from "@forms-engine/withController";
 
 const InputRoot = createStyled('label', {
-  shouldForwardProp: (prop) => isPropValid(prop)
+  shouldForwardProp: (prop) => $isPropValid(prop)
 })((props: CanBeThemed<InputProps>) => ({}));
 
 const PureInput = forwardRef((props: CanBeStyled<InputProps>, ref: ForwardedRef<any>) => {

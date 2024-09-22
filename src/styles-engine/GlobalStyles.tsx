@@ -1,6 +1,6 @@
-import { Global, GlobalStylesProps } from "@styles-engine/api";
+import { $Global, $GlobalProps } from "@styles-engine/api";
 
-export const GlobalStyles = (props: GlobalStylesProps) => {
+export const GlobalStyles = (props: $GlobalProps) => {
   const {styles} = props;
-  return <Global styles={styles}/>;
+  return <$Global styles={styles}/>;
 }

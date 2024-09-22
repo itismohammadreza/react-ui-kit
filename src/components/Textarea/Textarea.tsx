@@ -2,13 +2,13 @@ import { ForwardedRef, forwardRef, memo, useRef } from "react";
 import { TextareaProps } from "@components/Textarea/TextareaModel";
 import { TextareaBase } from "@components/Textarea/TextareaBase";
 import { createStyled } from "@styles-engine/styled";
-import { isPropValid } from "@styles-engine/api";
+import { $isPropValid } from "@styles-engine/api";
 import { uniqueComponentId } from "@utils/uniqeComponentId";
 import { CanBeStyled, CanBeThemed } from "@models/data.model";
 import { withController } from "@forms-engine/withController";
 
 const TextareaRoot = createStyled('label', {
-  shouldForwardProp: (prop) => isPropValid(prop)
+  shouldForwardProp: (prop) => $isPropValid(prop)
 })((props: CanBeThemed<TextareaProps>) => ({}));
 
 const PureTextarea = forwardRef((props: CanBeStyled<TextareaProps>, ref: ForwardedRef<any>) => {

@@ -2,14 +2,14 @@ import { ForwardedRef, forwardRef, Fragment, memo, useMemo } from "react";
 import { RadioGroupProps } from "@components/RadioGroup/RadioGroupModel";
 import { RadioGroupBase } from "@components/RadioGroup/RadioGroupBase";
 import { createStyled } from "@styles-engine/styled";
-import { isPropValid } from "@styles-engine/api";
+import { $isPropValid } from "@styles-engine/api";
 import { uniqueComponentId } from "@utils/uniqeComponentId";
 import { CanBeStyled, CanBeThemed } from "@models/data.model";
 import { Radio } from "@components/Radio";
 import { withController } from "@forms-engine/withController";
 
 const RadioGroupRoot = createStyled('div', {
-  shouldForwardProp: (prop) => isPropValid(prop)
+  shouldForwardProp: (prop) => $isPropValid(prop)
 })((props: CanBeThemed<RadioGroupProps>) => ({}));
 
 const PureRadioGroup = forwardRef((props: CanBeStyled<RadioGroupProps>, ref: ForwardedRef<any>) => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Transition } from "@styles-engine/api";
+import { $Transition } from "@styles-engine/api";
 import { RippleInnerProps } from "@components/Ripple";
 import { RippleInnerBase } from "@components/Ripple/RippleBase";
 import { createStyled } from "@styles-engine/styled";
@@ -73,7 +73,7 @@ export const RippleInner = (props: RippleInnerProps) => {
   } = defaultProps;
 
   return (
-      <Transition
+      <$Transition
           onEnter={() => {
             setEntering(true)
           }}
@@ -93,6 +93,6 @@ export const RippleInner = (props: RippleInnerProps) => {
             color={color}>
           <span className={css.ink}/>
         </RippleInnerRoot>
-      </Transition>
+      </$Transition>
   )
 }

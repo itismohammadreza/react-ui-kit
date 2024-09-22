@@ -1,8 +1,8 @@
-import { IntrinsicElements, styled, StyledOptions, StyledTag } from "@styles-engine/api";
+import { $styled, $StyledOptions } from "@styles-engine/api";
 
-export const createStyled = <Tag extends StyledTag>(
+export const createStyled = <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions<IntrinsicElements[Tag]>
+    options?: $StyledOptions<JSX.IntrinsicElements[Tag]>
 ) => {
-  return styled<Tag>(tag, options);
+  return $styled<Tag>(tag, options);
 }

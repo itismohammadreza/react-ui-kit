@@ -1,8 +1,8 @@
 import { GlobalStyles } from "@styles-engine/GlobalStyles";
-import { CSSObject } from "@styles-engine/api";
+import { $CSSObject } from "@styles-engine/api";
 
 export const CssBaseline = () => {
-  const styles: CSSObject = {
+  const styles: $CSSObject = {
     ':root': {
       fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
       lineHeight: 1.5,

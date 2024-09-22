@@ -1,5 +1,5 @@
 import { Controller, useFormContext, useWatch } from "@forms-engine/api.ts";
-import { classNames } from "@styles-engine/api";
+import { $classNames } from "@styles-engine/api";
 import { JSXElementConstructor } from "react";
 import { CanBeStyled, FormControl } from "@models/data.model";
 
@@ -23,7 +23,7 @@ export const withController = (Component: JSXElementConstructor<CanBeStyled<Form
                 <>
                   <Component
                       className={
-                        classNames({
+                        $classNames({
                           'ui-invalid': fieldState?.invalid,
                           'ui-touched': fieldState?.isTouched,
                           'ui-dirty': fieldState?.isDirty,

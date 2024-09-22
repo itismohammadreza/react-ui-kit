@@ -1,6 +1,6 @@
 import { ComponentBase } from "@models/data.model";
 import { CheckboxProps, CheckboxState } from "@components/Checkbox/CheckboxModel";
-import { classNames } from "@styles-engine/api";
+import { $classNames } from "@styles-engine/api";
 
 export const CheckboxBase: ComponentBase<CheckboxProps, CheckboxState> = (ownerState) => {
   const defaultProps: CheckboxProps = {
@@ -12,7 +12,7 @@ export const CheckboxBase: ComponentBase<CheckboxProps, CheckboxState> = (ownerS
   return {
     defaultProps,
     css: {
-      root: classNames("ui-input-root", {
+      root: $classNames("ui-input-root", {
         'ui-invalid': ownerState.fieldState?.invalid,
         'ui-touched': ownerState.fieldState?.isTouched,
         'ui-dirty': ownerState.fieldState?.isDirty,

@@ -1,6 +1,6 @@
 import { ComponentBase } from "@models/data.model";
 import { RippleInnerProps, RippleInnerState, RippleProps, RippleState } from "@components/Ripple/RippleModel";
-import { classNames } from "@styles-engine/api";
+import { $classNames } from "@styles-engine/api";
 
 export const RippleInnerBase: ComponentBase<RippleInnerProps, RippleInnerState> = (ownerState) => {
   const {exiting, entering, ...others} = ownerState;
@@ -12,11 +12,11 @@ export const RippleInnerBase: ComponentBase<RippleInnerProps, RippleInnerState> 
   return {
     defaultProps,
     css: {
-      root: classNames(
+      root: $classNames(
           'ripple-wrapper',
           {'ripple-exiting': exiting},
       ),
-      ink: classNames(
+      ink: $classNames(
           'ripple-ink',
           {'ripple-entering': entering}
       )
